@@ -1,5 +1,9 @@
 package com.intralacos.service.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.JSONObject;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,13 +22,8 @@ public class HelloWorld {
 
     @GetMapping
     public @ResponseBody String helloWorld(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
-        String requestHeader = requestEntity.getHeaders().getFirst("MyRequestHeader");
-
-        byte[] requestBody = requestEntity.getBody();
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("MyResponseHeader", "MyValue");
-
-        return new String("Hello World");
+        JSONObject response = new JSONObject();
+        response.put("message", "Hello World");
+       return new String(response.toString());
     }
 }
