@@ -19,4 +19,8 @@ public class EntPerfil {
 
     @Column(name = "DESCR")
     private String descr;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CPF")
+    private EntUsuario usuario;
 }

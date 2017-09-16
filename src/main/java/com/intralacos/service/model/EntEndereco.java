@@ -33,7 +33,7 @@ public class EntEndereco implements Serializable {
     @JoinColumn(name = "CPF")
     private EntUsuario usuario;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ATIVIDADE")
     private EntAtividade atividade;
 

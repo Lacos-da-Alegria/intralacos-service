@@ -20,7 +20,11 @@ public class EntCidade {
     @Column(name = "NOME")
     private String nome;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ENDERECO")
     private EntEndereco endereco;
+
+    @ManyToOne
+    @JoinColumn(name = "UF")
+    private EntUf uf;
 }

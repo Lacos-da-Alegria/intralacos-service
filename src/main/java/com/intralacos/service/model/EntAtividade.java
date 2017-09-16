@@ -35,8 +35,12 @@ public class EntAtividade {
     @Column(name = "NUM_VOLUNTARIO")
     private Long numVoluntarios;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "ENDERECO", nullable = false, updatable = true)
     private EntEndereco endereco;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CPF")
+    private EntUsuario usuarioPrimeiraVisita;
 
 }
