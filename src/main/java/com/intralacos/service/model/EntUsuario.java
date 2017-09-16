@@ -27,13 +27,13 @@ public class EntUsuario implements Serializable {
     @Column(name = "EMAIL")
     private String email;
 
+    // Faremos o tratamento do DDD no front-end (61) 99999-9999 -> 619999999999
+    @Column(name = "CELULAR")
+    private Long celular;
+
     @OneToOne
     @JoinColumn(name = "ENDERECO", nullable = false, updatable = true)
     private EntEndereco endereco;
-
-    @OneToOne
-    @JoinColumn(name = "CELULAR", nullable = false, updatable = true)
-    private EntCelular celular;
 
     @ManyToOne
     @JoinColumn(name = "PERFIL", nullable = false, updatable = true)
