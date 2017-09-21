@@ -30,7 +30,9 @@ Informações do Projeto:
 3 - Como posso contribuir para o projeto?
 -----------------------------------------
 
-* [Contribuindo](#)
+* [Primeiros passos](#)
+* [Pegando uma issue](#)
+* [Enviando sua contribuição](#)
 
 4 - Pré-requisitos
 ------------------
