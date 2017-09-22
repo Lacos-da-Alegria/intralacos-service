@@ -14,12 +14,12 @@ public class EntUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "NOME_COMPLETO")
-    private String nomeCompleto;
-
     @Id
     @Column(name = "CPF")
     private Long cpf;
+
+    @Column(name = "NOME")
+    private String nome;
 
     @Column(name = "DATA_NASCIMENTO")
     private Date dataNascimento;
@@ -31,23 +31,21 @@ public class EntUsuario implements Serializable {
     @Column(name = "CELULAR")
     private Long celular;
 
-    @OneToOne
-    @JoinColumn(name = "ENDERECO", nullable = false, updatable = true)
-    private EntEndereco endereco;
+    @Column(name = "ENDERECO")
+    private String endereco;
 
-    @ManyToOne
-    @JoinColumn(name = "PERFIL", nullable = false, updatable = true)
-    private EntPerfil perfil;
+    @Column(name = "NOME_DOUTOR")
+    private String nomeDoutor;
 
-    @ManyToOne
-    @JoinColumn(name = "PRIMEIRA_ATIVIDADE", nullable = false, updatable = true)
-    private EntAtividade primeiraAtividade;
+    @Column(name = "NOVATO")
+    private Character novato;
 
-    @ManyToOne
-    @JoinColumn(name = "SEXO", nullable = false, updatable = true)
-    private EntSexo sexo;
+    @Column(name = "OBSERVACAO")
+    private String observacao;
 
-    @ManyToOne
-    @JoinColumn(name = "COMO_CONHECEU", nullable = false, updatable = true)
-    private EntComoConheceu comoConheceu;
+    @Column(name = "SENHA")
+    private String senha;
+
+    @Column(name = "SEXO")
+    private String sexo;
 }

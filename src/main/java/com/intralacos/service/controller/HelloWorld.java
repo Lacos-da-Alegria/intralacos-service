@@ -1,14 +1,9 @@
 package com.intralacos.service.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import jdk.nashorn.internal.parser.JSONParser;
-import org.json.JSONObject;
-import org.springframework.boot.jackson.JsonObjectSerializer;
+import com.intralacos.service.model.EntUsuario;
+import com.intralacos.service.repository.Usuarios;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,10 +15,13 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/")
 public class HelloWorld {
 
+    @Autowired
+    private Usuarios usuarios;
+
     @GetMapping
-    public @ResponseBody String helloWorld(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
-        JSONObject response = new JSONObject();
-        response.put("message", "Hello World");
-       return new String(response.toString());
+    public @ResponseBody EntUsuario helloWorld(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
+        EntUsuario usuario = this.usuarios.findOne(Long.parseLong("12914972261"));
+
+        return usuario;
     }
 }
