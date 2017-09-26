@@ -19,7 +19,7 @@ public class HelloWorld {
     private Usuarios usuarios;
 
     @GetMapping
-    public @ResponseBody EntUsuario helloWorld(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
+    public @ResponseBody EntUsuario helloWorld() throws UnsupportedEncodingException {
         EntUsuario usuario = this.usuarios.findOne(Long.parseLong("12914972261"));
 
         return usuario;
