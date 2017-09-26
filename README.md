@@ -49,4 +49,4 @@ Informações do Projeto:
 6 - Documentação do Projeto
 ----------------
 
-* [Intralacos Documentação](https://lacos-da-alegria.github.io/intralacos-service/)
+* [Intralacos Documentação](https://lacos-da-alegria.github.io/)
