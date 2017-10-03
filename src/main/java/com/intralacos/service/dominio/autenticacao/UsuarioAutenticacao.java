@@ -1,4 +1,4 @@
-package com.intralacos.service.autenticacao;
+package com.intralacos.service.dominio.autenticacao;
 
 import lombok.Getter;
 import lombok.Setter;

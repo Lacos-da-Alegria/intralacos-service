@@ -1,7 +1,7 @@
 package com.intralacos.service.controller;
 
-import com.intralacos.service.autenticacao.AutenticacaoService;
-import com.intralacos.service.autenticacao.UsuarioAutenticacao;
+import com.intralacos.service.dominio.autenticacao.AutenticacaoService;
+import com.intralacos.service.dominio.autenticacao.UsuarioAutenticacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +14,8 @@ public class Login {
 
     @PostMapping
     public @ResponseBody
-    UsuarioAutenticacao login(@RequestBody UsuarioAutenticacao usuario) {
-        UsuarioAutenticacao token = this.autenticacaoService.autenticar(usuario);
+    String login(@RequestBody UsuarioAutenticacao usuario) {
+        String token = this.autenticacaoService.autenticar(usuario);
 
         return token;
     }
