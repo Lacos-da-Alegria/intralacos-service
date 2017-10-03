@@ -1,8 +1,12 @@
 package com.intralacos.service.controller;
 
 import com.intralacos.service.dominio.autenticacao.AutenticacaoService;
+import com.intralacos.service.dominio.autenticacao.Usuario;
 import com.intralacos.service.dominio.autenticacao.UsuarioAutenticacao;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,10 +17,14 @@ public class Login {
     private AutenticacaoService autenticacaoService;
 
     @PostMapping
-    public @ResponseBody
-    String login(@RequestBody UsuarioAutenticacao usuario) {
-        String token = this.autenticacaoService.autenticar(usuario);
+    public @ResponseBody @ResponseStatus(HttpStatus.NOT_FOUND)
+    ResponseEntity<Usuario> login(@RequestBody UsuarioAutenticacao usuario) throws NotFoundException {
+        Usuario token = this.autenticacaoService.autenticar(usuario);
 
-        return token;
+        if(token != null) {
+            return new ResponseEntity<Usuario>(token, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<Usuario>(token, HttpStatus.NOT_FOUND);
+        }
     }
 }

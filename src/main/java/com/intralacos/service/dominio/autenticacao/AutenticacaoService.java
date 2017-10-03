@@ -15,8 +15,6 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class AutenticacaoService {
@@ -24,21 +22,21 @@ public class AutenticacaoService {
     @Autowired
     private Usuarios usuarios;
 
-    public String autenticar(UsuarioAutenticacao usuario) {
+    public Usuario autenticar(UsuarioAutenticacao usuario) {
         EntUsuario entUsuario = this.usuarios.findByEmail(usuario.getEmail());
+        Usuario usuarioLogado = null;
 
         if(entUsuario != null) {
             String mdPass = this.getMD5Password(usuario.getPassword());
 
             if(mdPass != null && mdPass.equals(entUsuario.getSenha())) {
-                Usuario usuarioLogado = new Usuario(entUsuario);
-                String token = this.getUsuarioToken(usuarioLogado, Long.valueOf("1200000"));
 
-                return token;
+                String token = this.getUsuarioToken(entUsuario, Long.valueOf("1200000"));
+                usuarioLogado = new Usuario(entUsuario, token);
             }
         }
 
-        return "Usuario e/ou senha não encontrado.";
+        return usuarioLogado;
     }
 
 
@@ -57,7 +55,7 @@ public class AutenticacaoService {
         return pass;
     }
 
-    private String getUsuarioToken(Usuario usuario, long ttlMillis) {
+    private String getUsuarioToken(EntUsuario usuario, long ttlMillis) {
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
@@ -68,15 +66,14 @@ public class AutenticacaoService {
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(usuario.getEmail() + usuario.getCpf().toString());
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
-        Map<String, Object> headerClaims = new HashMap();
-        headerClaims.put("usuario", usuario);
+        // Map<String, Object> headerClaims = new HashMap();
+        // headerClaims.put("usuario", usuario);
 
         //Let's set the JWT Claims
-        JwtBuilder builder = Jwts.builder().setId(usuario.getCpf().toString())
+        JwtBuilder builder = Jwts.builder().setId(usuario.getEmail().toString())
                 .setIssuedAt(now)
                 .setSubject(usuario.getEmail())
                 .setIssuer("api.intralacos.com")
-                .setHeader(headerClaims)
                 .signWith(signatureAlgorithm, signingKey);
 
         //if it has been specified, let's add the expiration

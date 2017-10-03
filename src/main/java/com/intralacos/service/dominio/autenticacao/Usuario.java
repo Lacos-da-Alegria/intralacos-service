@@ -30,7 +30,9 @@ public class Usuario {
 
         private String sexo;
 
-        public Usuario(EntUsuario usuario) {
+        private String token;
+
+        public Usuario(EntUsuario usuario, String token) {
                 this.cpf = usuario.getCpf();
                 this.nome = usuario.getNome();
                 this.dataNascimento = usuario.getDataNascimento();
@@ -41,5 +43,6 @@ public class Usuario {
                 this.novato = usuario.getNovato();
                 this.observacao = usuario.getObservacao();
                 this.sexo = usuario.getSexo();
+                this.token = token;
         }
 }
