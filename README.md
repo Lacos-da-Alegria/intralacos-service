@@ -1,9 +1,10 @@
 Intralacos Services - Laços da Alegria
 ========
 
-Informações do Projeto:  
+Informações do Projeto:   
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)   
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/Lacos-da-Alegria/intralacos-service.svg?columns=all)](http://waffle.io/Lacos-da-Alegria/intralacos-service)
 
 
 Índice
