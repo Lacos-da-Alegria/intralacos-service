@@ -1,6 +1,8 @@
-package com.intralacos.service.dominio.autenticacao;
+package com.intralacos.service.service.autenticacao;
 
-import com.intralacos.service.model.EntUsuario;
+import com.intralacos.service.model.usuario.UsuarioLogadoModel;
+import com.intralacos.service.model.usuario.UsuarioAutenticacaoModel;
+import com.intralacos.service.model.usuario.UsuarioModel;
 import com.intralacos.service.repository.Usuarios;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
@@ -22,21 +24,21 @@ public class AutenticacaoService {
     @Autowired
     private Usuarios usuarios;
 
-    public Usuario autenticar(UsuarioAutenticacao usuario) {
-        EntUsuario entUsuario = this.usuarios.findByEmail(usuario.getEmail());
-        Usuario usuarioLogado = null;
+    public UsuarioLogadoModel autenticar(UsuarioAutenticacaoModel usuario) {
+        UsuarioModel usuarioModel = this.usuarios.findByEmail(usuario.getEmail());
+        UsuarioLogadoModel usuarioLogadoModelLogado = null;
 
-        if(entUsuario != null) {
-            String mdPass = this.getMD5Password(usuario.getPassword());
+        if(usuarioModel != null) {
+            String mdPass = this.getMD5Password(usuario.getSenha());
 
-            if(mdPass != null && mdPass.equals(entUsuario.getSenha())) {
+            if(mdPass != null && mdPass.equals(usuarioModel.getSenha())) {
 
-                String token = this.getUsuarioToken(entUsuario, Long.valueOf("1200000"));
-                usuarioLogado = new Usuario(entUsuario, token);
+                String token = this.getUsuarioToken(usuarioModel, Long.valueOf("1200000"));
+                usuarioLogadoModelLogado = new UsuarioLogadoModel(usuarioModel, token);
             }
         }
 
-        return usuarioLogado;
+        return usuarioLogadoModelLogado;
     }
 
 
@@ -55,7 +57,7 @@ public class AutenticacaoService {
         return pass;
     }
 
-    private String getUsuarioToken(EntUsuario usuario, long ttlMillis) {
+    private String getUsuarioToken(UsuarioModel usuario, long ttlMillis) {
         //The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 

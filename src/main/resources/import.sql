@@ -1,1 +1,0 @@
-insert into usuario (cpf, nome, data_nascimento, email, celular, endereco, nome_doutor, novato, observacao, senha, sexo) values (12914972261, 'Vitor Nere', date '1994-11-26', 'email@email.com', 61999999999, 'Quadra 1 Conj 1 Casa 1', 'Creuzinha', 'F', '', '698dc19d489c4e4db73e28a713eab07b', 'masculino');

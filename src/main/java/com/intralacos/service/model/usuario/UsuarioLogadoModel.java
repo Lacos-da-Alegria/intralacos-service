@@ -1,6 +1,7 @@
-package com.intralacos.service.dominio.autenticacao;
+package com.intralacos.service.model.usuario;
 
-import com.intralacos.service.model.EntUsuario;
+import com.intralacos.service.model.usuario.UsuarioModel;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class Usuario {
+public class UsuarioLogadoModel {
 
         private Long cpf;
 
@@ -20,11 +21,11 @@ public class Usuario {
 
         private Long celular;
 
-        private String endereco;
+                private String endereco;
 
         private String nomeDoutor;
 
-        private Character novato;
+        private Boolean novato;
 
         private String observacao;
 
@@ -32,7 +33,7 @@ public class Usuario {
 
         private String token;
 
-        public Usuario(EntUsuario usuario, String token) {
+        public UsuarioLogadoModel(UsuarioModel usuario, String token) {
                 this.cpf = usuario.getCpf();
                 this.nome = usuario.getNome();
                 this.dataNascimento = usuario.getDataNascimento();

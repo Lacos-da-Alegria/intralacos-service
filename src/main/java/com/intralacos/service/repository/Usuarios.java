@@ -1,8 +1,8 @@
 package com.intralacos.service.repository;
 
-import com.intralacos.service.model.EntUsuario;
+import com.intralacos.service.model.usuario.UsuarioModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Usuarios  extends JpaRepository<EntUsuario, Long> {
-    EntUsuario findByEmail(String email);
+public interface Usuarios  extends JpaRepository<UsuarioModel, Long> {
+    UsuarioModel findByEmail(String email);
 }

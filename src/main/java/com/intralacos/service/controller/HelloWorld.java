@@ -1,6 +1,6 @@
 package com.intralacos.service.controller;
 
-import com.intralacos.service.model.EntUsuario;
+import com.intralacos.service.model.usuario.UsuarioModel;
 import com.intralacos.service.repository.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +18,9 @@ public class HelloWorld {
     private Usuarios usuarios;
 
     @GetMapping
-    public @ResponseBody EntUsuario helloWorld() throws UnsupportedEncodingException {
-        EntUsuario usuario = this.usuarios.findOne(Long.parseLong("12914972261"));
+    public @ResponseBody
+    UsuarioModel helloWorld() throws UnsupportedEncodingException {
+        UsuarioModel usuario = this.usuarios.findOne(Long.parseLong("12914972261"));
 
         return usuario;
     }
